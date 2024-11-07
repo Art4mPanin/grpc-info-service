@@ -8,6 +8,7 @@ import (
 type Config struct {
 	GRPC     GRPCConfig `yaml:"grpc"`
 	DBConfig DBConfig   `yaml:"db"`
+	Host     string     `yaml:"host"`
 }
 type GRPCConfig struct {
 	Port     int           `yaml:"port"`
