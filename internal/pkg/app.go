@@ -1,9 +1,9 @@
 package pkg
 
 import (
-	"grpc-nfo-service/internal/config"
-	"grpc-nfo-service/internal/pkg/grpc"
-	"grpc-nfo-service/pkg/logger"
+	"github.com/Art4mPanin/grpc-info-service/internal/config"
+	"github.com/Art4mPanin/grpc-info-service/internal/pkg/grpc"
+	"github.com/Art4mPanin/grpc-info-service/pkg/logger"
 	"log/slog"
 	"os"
 	"os/signal"

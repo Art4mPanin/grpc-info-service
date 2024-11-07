@@ -2,11 +2,12 @@ package grpc
 
 import (
 	"fmt"
+	inforpc "github.com/Art4mPanin/grpc-info-service/internal/controllers/grpc/info"
+	"github.com/Art4mPanin/grpc-info-service/internal/repositories/user"
+	"github.com/Art4mPanin/grpc-info-service/internal/services/info"
+	"github.com/Art4mPanin/grpc-info-service/internal/storage"
 	"google.golang.org/grpc"
 	"gorm.io/gorm"
-	"grpc-nfo-service/internal/repositories/user"
-	"grpc-nfo-service/internal/services/info"
-	"grpc-nfo-service/internal/storage"
 	"log/slog"
 	"net"
 )
@@ -32,8 +33,8 @@ func NewGRPC(log *slog.Logger, port int) *GRPC {
 func registerInfoHandler(server *grpc.Server, DB *gorm.DB, logger *slog.Logger) {
 
 	repo := user.NewUserRepository(DB)
-	infoService := info.NewInfoService(repo, logger)
-	Register(server, infoService)
+	infoService := info.NewGetInfoService(repo, logger)
+	inforpc.Register(server, infoService)
 	// todo: other services (user, token)
 	//	todo: pornhub.Register(server, pronhubService)
 }

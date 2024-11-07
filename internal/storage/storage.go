@@ -2,11 +2,11 @@ package storage
 
 import (
 	"fmt"
+	"github.com/Art4mPanin/grpc-info-service/internal/config"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"grpc-nfo-service/internal/config"
 	"log"
 	"os"
 )
@@ -39,9 +39,5 @@ func InitDB() *gorm.DB {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
 
-	err = db.AutoMigrate()
-	if err != nil {
-		log.Fatalf("Failed to migrate database: %v", err)
-	}
 	return db
 }

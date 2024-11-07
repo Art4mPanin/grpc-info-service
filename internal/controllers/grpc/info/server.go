@@ -1,19 +1,18 @@
 package info
 
 import (
-	"context"
+	"github.com/Art4mPanin/grpc-info-service/internal/data/gen/info"
+	"github.com/Art4mPanin/grpc-info-service/internal/models"
 	"google.golang.org/grpc"
-	"grpc-nfo-service/internal/data/gen/info"
 	"log/slog"
 )
 
 type grpcInfoService interface {
-	CreateInfo(ctx context.Context, req *info.CreateInfoRequest) (*info.CreateInfoResponse, error)
+	CreateInfo(smtrequest, token string) (*models.Info, error)
 }
 
 type ServerInfo struct {
 	info.UnimplementedInfoServer
-
 	Service grpcInfoService
 	log     *slog.Logger
 }

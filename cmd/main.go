@@ -1,6 +1,6 @@
 package main
 
-import "grpc-nfo-service/internal/pkg"
+import "github.com/Art4mPanin/grpc-info-service/internal/pkg"
 
 func main() {
 	pkg.InitServer()

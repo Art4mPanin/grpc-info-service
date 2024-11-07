@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "/auth;auth";
+
+service Auth {
+  rpc Validate (ValidateRequest) returns (ValidateResponse);
+  //  todo: ping
+}
+message ValidateRequest {
+  string Auth_JWT_Header = 1;
+}
+message ValidateResponse {
+  bool valid = 1;
+}

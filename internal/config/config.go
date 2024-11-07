@@ -10,8 +10,9 @@ type Config struct {
 	DBConfig DBConfig   `yaml:"db"`
 }
 type GRPCConfig struct {
-	Port    int           `yaml:"port"`
-	Timeout time.Duration `yaml:"timeout"`
+	Port     int           `yaml:"port"`
+	AuthPort int           `yaml:"authport"`
+	Timeout  time.Duration `yaml:"timeout"`
 }
 type DBConfig struct {
 	Host     string `yaml:"host"`
@@ -29,7 +30,12 @@ func LoadConfig() (Config, error) {
 	if err := viper.ReadInConfig(); err != nil {
 		return config, err
 	}
-	if err := viper.Unmarshal(&config); err != nil {
+
+	if err := viper.Sub("grpc").Unmarshal(&config.GRPC); err != nil {
+		return config, err
+	}
+
+	if err := viper.Sub("db").Unmarshal(&config.DBConfig); err != nil {
 		return config, err
 	}
 
